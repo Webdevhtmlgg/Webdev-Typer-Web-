@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up & Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('pp.jpg');
+      background-size:cover;
+      background-repeat: no repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 500px;
+      height:2000%;
+      width: 90%;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+    h1 {
+      color: #333;
+    }
+    input {
+      width: 50%;
+      height: 50px;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 20px;
+      box-sizing: 10%;
+    }
+    button {
+      width: 100%;
+      height: 50px;
+      margin-top: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sign Up</h1>
+    <form id="signupForm" onsubmit="signUp(event)">
+      <input type="text" placeholder="Enter username" id="signupUsername" required>
+      <input type="password" placeholder="Enter password" id="signupPassword" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    <div class="error" id="signupError"></div>
+
+    <h1>Login</h1>
+    <form id="loginForm" onsubmit="login(event)">
+      <input type="text" placeholder="Enter username" id="loginUsername" required>
+      <input type="password" placeholder="Enter password" id="loginPassword" required>
+      <button type="submit">Login</button>
+    </form>
+    <div class="error" id="loginError"></div>
+  </div>
+
+  <script>
+    let users = [];
+
+    function signUp(event) {
+      event.preventDefault();
+      const username = document.getElementById('signupUsername').value;
+      const password = document.getElementById('signupPassword').value;
+      
+      if (users.some(user => user.username === username)) {
+        document.getElementById('signupError').innerText = 'Username already exists. Please choose a different one.';
+      } else {
+        users.push({ username, password });
+        document.getElementById('signupError').innerText = '';
+        alert('Sign up successful! Please proceed to login.');
+      }
+    }
+
+    function login(event) {
+      event.preventDefault();
+      const username = document.getElementById('loginUsername').value;
+      const password = document.getElementById('loginPassword').value;
+
+      const user = users.find(user => user.username === username);
+      if (!user || user.password !== password) {
+        document.getElementById('loginError').innerText = 'Incorrect username or password. Please try again.';
+      } else {
+        document.getElementById('loginError').innerText = '';
+        alert('Login successful! Welcome, ' + username);
+      } 
+         if (username === 'admin') {
+        window.location.href = 'https://webdevhtml.github.io/y1.html/platform.html';
+      } else {
+        window.location.href = 'https://webdevhtml.github.io/y1.html/platform.html';
+      }
+    }
+  </script>
+    }
+  </script>
+</body>
+</html>
